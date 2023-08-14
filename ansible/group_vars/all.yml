@@ -1,6 +1,6 @@
 user:
-  name: vagrant
-  email: thiago.nascimento@propylon.com
+  name: thinasc
+  email: tnascimento.thiago@gmail.com
   shell: /usr/bin/fish
 
 dotfiles:

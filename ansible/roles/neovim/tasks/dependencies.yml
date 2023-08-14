@@ -1,0 +1,7 @@
+- name: Install Neovim Dependencies
+  become: true
+  pacman:
+    name:
+      - tree-sitter
+      - xdg-utils
+    state: present

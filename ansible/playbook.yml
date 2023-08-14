@@ -6,4 +6,5 @@
   roles:
     - role: system
     - role: tools
+    - role: neovim
     # - role: programming

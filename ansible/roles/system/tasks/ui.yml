@@ -3,6 +3,18 @@
     cmd: yay -S hyprland --noconfirm
     # creates: /usr/bin/session-manager-plugin
 
-- name: Install Waybar with YaY
+- name: Install Hyprland Dependencies with YaY
   command:
-    cmd: yay -S waybar --noconfirm
+    cmd: yay -S {{ item }} --noconfirm
+  loop:
+    - waybar
+    - swww
+    - swaylock-effects
+    - wofi
+    - wlogout
+    - mako
+    - xdg-desktop-portal-hyprland
+    - swappy
+    - grim
+    - slurp
+    - thunar
