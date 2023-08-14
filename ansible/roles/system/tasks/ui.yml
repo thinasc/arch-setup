@@ -1,0 +1,8 @@
+- name: Install Hyprland with YaY
+  command:
+    cmd: yay -S hyprland --noconfirm
+    # creates: /usr/bin/session-manager-plugin
+
+- name: Install Waybar with YaY
+  command:
+    cmd: yay -S waybar --noconfirm

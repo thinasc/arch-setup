@@ -33,4 +33,4 @@ systemctl enable NetworkManager
 
 useradd -m -g users -G wheel thinasc
 passwd -d thinasc
-echo 'thinasc ALL=(ALL) NOPASSWD: ALL' >
+echo 'thinasc ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers

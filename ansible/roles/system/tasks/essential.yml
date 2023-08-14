@@ -4,11 +4,6 @@
     update_cache: true
     upgrade: true
 
-# - name: Install Base Devel
-#   become: true
-#   command:
-#     cmd: pacman -S --noconfirm base-devel
-
 - name: Install Essential Packages
   become: true
   pacman:
@@ -16,6 +11,5 @@
       - base-devel
       - git
       - curl
-      - networkmanager
       - python-requests
     state: present
