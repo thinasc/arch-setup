@@ -16,5 +16,6 @@
       - base-devel
       - git
       - curl
+      - networkmanager
       - python-requests
     state: present
