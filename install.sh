@@ -17,9 +17,13 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
 echo "Generating GRUB"
 arch-chroot /mnt
 mkinitcpio -p linux
-pacman -Syyuu grub
+
+pacman -Syyuu grub --noconfirm
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
+
+echo "Installing Packages"
+pacman -S networkmanager --noconfirm
 
 echo "Setup resolv.conf"
 echo 'nameserver 1.1.1.1' > /etc/resolv.conf
