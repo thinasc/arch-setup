@@ -1,10 +1,14 @@
 echo "Partitioning"
 parted -s /dev/sda mklabel msdos
-parted /dev/sda mkpart primary 1MiB 100%
+parted /dev/sda mkpart primary 1MiB 472840KiB
+parted /dev/sda mkpart primary 472840KiB 100%
+
 mkfs.ext4 /dev/sda1
+mkswap /dev/sda2
 
 echo "Mounting"
 mount /dev/sda1 /mnt
+swapon /dev/sda2
 # mkdir /mnt/boot
 # mkdir /mnt/home
 
