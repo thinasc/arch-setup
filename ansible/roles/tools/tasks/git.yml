@@ -1,0 +1,7 @@
+- name: Install Git Tools
+  become: true
+  pacman:
+    name:
+      - git-delta
+      - lazygit
+    state: present

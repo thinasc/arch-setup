@@ -1,0 +1,8 @@
+- name: Install Search Tools
+  become: true
+  pacman:
+    name:
+      - fd
+      - fzf
+      - ripgrep
+    state: present

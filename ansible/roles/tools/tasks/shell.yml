@@ -1,0 +1,14 @@
+- name: Install Shells
+  become: true
+  pacman:
+    name:
+      - fish
+      - zsh
+      - starship
+    state: present
+
+- name: Change {{ user.name }}'s Shell to Fish
+  become: true 
+  user:
+    name: "{{ user.name }}"
+    shell: "{{ user.shell }}"
