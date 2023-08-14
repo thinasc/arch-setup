@@ -18,3 +18,54 @@
     - grim
     - slurp
     - thunar
+    - ttf-jetbrains-mono-nerd
+    - noto-fonts-emoji
+    - lxappearance
+    - xfce4-settings
+    - sddm-git
+    - qt5-svg
+    - qt5-quickcontrols2
+    - qt5-graphicaleffects
+    - polkit-gnome
+    - python-requests
+    - pamixer
+    - pavucontrol
+    - brightnessctl
+    - bluez
+    - bluez-utils
+    - blueman
+    - network-manager-applet
+    - gvfs
+    - thunar-archive-plugin
+    - file-roller
+    - btop
+    - pacman-contrib
+
+- name: Clone SFMono Nerd Fonts with Ligatures
+  command:
+    cmd: git clone https://github.com/shaunsingh/SFMono-Nerd-Font-Ligaturized.git /tmp/SFMono-Nerd-Font-Ligaturized
+  # git:
+  #   repo: https://github.com/shaunsingh/SFMono-Nerd-Font-Ligaturized.git
+  #   dest: /tmp/SFMono-Nerd-Font-Ligaturized
+
+- name: Install SFMono Nerd Fonts
+  become: true
+  shell:
+    cmd: |
+      cd /tmp/SFMono-Nerd-Font-Ligaturized
+      cp *.otf /usr/share/fonts
+    executable: "{{ user.shell }}"
+
+- name: Config sddm systemctl
+  become: true
+  systemd:
+    name: sddm
+    enabled: true
+    state: started
+
+- name: Config bluetooth systemctl
+  become: true
+  systemd:
+    name: bluetooth.service
+    enabled: true
+    state: started

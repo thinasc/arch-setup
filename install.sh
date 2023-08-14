@@ -1,20 +1,21 @@
 echo "Partitioning"
 parted -s /dev/sda mklabel msdos
-parted /dev/sda mkpart primary 1MiB 100%
-# parted /dev/sda mkpart primary 1MiB 472840KiB
-# parted /dev/sda mkpart primary 472840KiB 100%
+# parted /dev/sda mkpart primary 1MiB 100%
+parted /dev/sda mkpart primary 1MiB 4GiB
+parted /dev/sda mkpart primary 4GiB 100%
 
-mkfs.ext4 /dev/sda1
-# mkswap /dev/sda2
+mkswap /dev/sda1
+mkfs.ext4 /dev/sda2
 
 echo "Mounting"
-mount /dev/sda1 /mnt
+swapon /dev/sda1
+mount /dev/sda2 /mnt
 # swapon /dev/sda2
 # mkdir /mnt/boot
 # mkdir /mnt/home
 
 echo "Pacstrapping"
-pacstrap /mnt base linux linux-firmware dhcpcd networkmanager sudo
+pacstrap /mnt base linux dhcpcd networkmanager sudo
 
 echo "Generating fstab"
 genfstab -U -p /mnt >> /mnt/etc/fstab

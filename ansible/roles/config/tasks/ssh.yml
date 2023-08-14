@@ -1,0 +1,12 @@
+- name: Copy SSH Keys
+  copy:
+    src: .ssh
+    dest: $HOME
+    owner: "{{ user.name }}"
+
+- name: Change mode of SSH Key
+  file:
+    path: $HOME/.ssh/id_ed25519
+    state: file
+    owner: "{{ user.name }}"
+    mode: "0600"

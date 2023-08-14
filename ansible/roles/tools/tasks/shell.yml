@@ -5,6 +5,7 @@
       - fish
       - zsh
       - starship
+      - kitty
     state: present
 
 - name: Change {{ user.name }}'s Shell to Fish

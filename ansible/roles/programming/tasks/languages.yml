@@ -1,0 +1,23 @@
+- name: Install Languages Dependencies
+  become: true
+  pacman:
+    name: "{{ item.dependencies }}"
+    state: present
+  loop: "{{ languages }}"
+  when: item.dependencies is defined
+
+- name: Add ASDF Plugins
+  shell:
+    cmd: asdf plugin add {{ item.name }}
+    executable: "{{ user.shell }}"
+    creates: $HOME/.asdf/plugins/{{ item.name }}
+  loop: "{{ languages }}"
+
+- name: Install Languages
+  shell:
+    cmd: |
+      asdf install {{ item.name }} {{ item.version }}
+      asdf global {{ item.name }} {{ item.version }}
+    executable: "{{ user.shell }}"
+    creates: $HOME/.asdf/installs/{{ item.name }}/{{ item.version }}
+  loop: "{{ languages }}"

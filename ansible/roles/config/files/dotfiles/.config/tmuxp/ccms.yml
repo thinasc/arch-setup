@@ -1,0 +1,37 @@
+# ~/.config/tmuxp/ccms.yml
+
+session_name: ccms
+start_directory: ~/projects
+
+windows:
+  - window_name: terminal
+    focus: true
+    layout: even-vertical
+    panes:
+      - shell_command:
+          - clear
+          - htop
+      - shell_command:
+          - cd timearc-ccms-backend
+          - clear
+  - window_name: backend
+    layout: even-vertical
+    panes:
+      - shell_command:
+          - cd timearc-ccms-backend
+          - clear
+          - uvicorn --host 0.0.0.0 --port 8000 "timearc_ccms.site.asgi:application" --reload
+      - shell_command:
+          - cd ../development/ccms-startup
+          - clear
+          - docker-compose up
+  - window_name: frontend
+    layout: even-vertical
+    panes:
+      - shell_command:
+          - cd timearc-ccms-frontend
+          - clear
+          - npm start
+      - shell_command:
+          - cd timearc-portal-frontend
+          - clear

@@ -1,0 +1,69 @@
+# Prompt Format
+format = """
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$fill\
+$elixir\
+$golang\
+$lua\
+$nodejs\
+$python\
+$ruby\
+$rust\
+$terraform\
+$vagrant\
+$cmd_duration $jobs\
+$line_break\
+$character"""
+
+command_timeout = 1000
+
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vicmd_symbol = "[❮](green)"
+
+[fill]
+symbol = " "
+
+[directory]
+format = "[  $path]($style)[$read_only]($read_only_style) "
+style = "blue"
+read_only = " "
+truncation_length = 4
+truncate_to_repo = false
+
+[jobs]
+symbol = ""
+style = "bold red"
+number_threshold = 1
+# format = "[$symbol]($style)"
+
+[git_status]
+# format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "cyan"
+
+[cmd_duration]
+min_time = 0
+show_milliseconds = true 
+# format = "[祥 $duration]($style)"
+
+[elixir]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[python]
+symbol = " "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "

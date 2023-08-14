@@ -11,5 +11,5 @@
       - base-devel
       - git
       - curl
-      - python-requests
+      - pulseaudio
     state: present

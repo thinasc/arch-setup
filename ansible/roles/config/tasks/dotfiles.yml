@@ -1,0 +1,86 @@
+- name: Clean Up Configs
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - $HOME/.config/fish
+    - $HOME/.config/htop
+    - $HOME/.config/hypr
+    - $HOME/.config/kitty
+    - $HOME/.config/tmux
+
+- name: Clone Dotfiles
+  copy:
+    src: dotfiles
+    dest: $HOME
+  # git:
+  #   repo: "{{ dotfiles.repo }}"
+  #   dest: "{{ dotfiles.dir }}"
+
+- name: Stow Dotfiles
+  command:
+    cmd: stow --dir={{ dotfiles.dir }} --target=$HOME .
+
+- name: Setup gitconfig file
+  template:
+    src: gitconfig
+    dest: $HOME/.config/git/config
+
+- name: Copy Theme SDDM
+  become: true
+  copy:
+    src: sdt
+    dest: /usr/share/sddm/themes
+    owner: "{{ user.name }}"
+
+- name: Create sddm.conf.d Folder
+  become: true
+  file:
+    path: /etc/sddm.conf.d
+    state: directory
+
+- name: Copy SDDM Conf
+  become: true
+  copy:
+    src: 10-theme.conf
+    dest: /etc/sddm.conf.d
+    mode: "0644"
+
+- name: Create Waybar Symbolic Link
+  file:
+    src: $HOME/.config/waybar/style/style-dark.css
+    dest: $HOME/.config/waybar/style.css
+    state: link
+
+- name: Create Wofi Symbolic Link
+  file:
+    src: $HOME/.config/wofi/style/style-dark.css
+    dest: $HOME/.config/wofi/style.css
+    state: link
+
+- name: Create SDDM Symbolic Link
+  file:
+    src: /usr/share/sddm/themes/sdt/Backgrounds/wallpaper-dark.jpg
+    dest: /usr/share/sddm/themes/sdt/wallpaper.jpg
+    state: link
+
+- name: Setting Scripts to be Executables
+  file:
+    path: "{{ item }}"
+    state: file
+    mode: "0755"
+  loop:
+    - $HOME/.config/hypr/scripts/bgaction
+    - $HOME/.config/hypr/scripts/xdg-portal-hyprland
+    - $HOME/.config/waybar/scripts/waybar-wttr.py
+    - $HOME/.config/waybar/scripts/baraction
+    - $HOME/.config/waybar/scripts/update-sys
+
+- name: Set First Theme as Dark Theme
+  command:
+    cmd: "{{ item }}"
+  loop:
+    - xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita-dark"
+    - xfconf-query -c xsettings -p /Net/IconThemeName -s "Adwaita-dark"
+    - gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+    - gsettings set org.gnome.desktop.interface icon-theme "Adwaita-dark"

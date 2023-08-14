@@ -1,0 +1,30 @@
+# ~/.config/tmuxp/portal.yml
+
+session_name: portal
+start_directory: ~/projects
+
+windows:
+  - window_name: terminal
+    focus: true
+    layout: even-vertical
+    panes:
+      - shell_command:
+          - clear
+          - htop
+      - shell_command:
+          - cd timearc-portal-backend
+          - clear
+  - window_name: backend
+    layout: even-vertical
+    panes:
+      - shell_command:
+          - cd timearc-portal-backend
+          - clear
+          - uvicorn --host 0.0.0.0 --port 8000 "timearc_portal.site.asgi:application" --reload
+  - window_name: frontend
+    layout: even-vertical
+    panes:
+      - shell_command:
+          - cd timearc-portal-frontend-next
+          - clear
+          - npm start

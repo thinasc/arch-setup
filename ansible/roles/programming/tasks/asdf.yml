@@ -1,0 +1,13 @@
+- name: Install ASDF Dependencies
+  become: true
+  pacman:
+    name:
+      - libxslt
+      - libyaml
+      - unixodbc
+    state: present
+
+- name: Install ASDF
+  command:
+    cmd: yay -S asdf-vm --noconfirm
+    creates: $HOME/.asdf
