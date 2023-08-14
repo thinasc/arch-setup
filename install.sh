@@ -26,8 +26,5 @@ pacman -Syyuu grub --noconfirm
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
-echo "Installing Packages"
-pacman -S networkmanager --noconfirm
-
-echo "Setup resolv.conf"
-echo 'nameserver 1.1.1.1' > /etc/resolv.conf
+pacman -S git --noconfirm
+git clone git@github.com:thinasc/arch-setup.git

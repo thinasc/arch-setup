@@ -1,0 +1,40 @@
+user:
+  name: vagrant
+  email: thiago.nascimento@propylon.com
+  shell: /usr/bin/fish
+
+dotfiles:
+  repo: git@github.com:thinasc/dotfiles.git
+  dir: $HOME/dotfiles
+
+yay: /usr/bin/yay
+
+# Languages
+languages:
+  - name: python
+    version: 3.8.17
+    dependencies:
+      - openssl
+      - zlib
+      - xz
+      - tk
+  - name: erlang
+    version: 26.0.2
+    dependencies:
+      - ncurses
+      - glu
+      - mesa
+      - libpng
+      - libssh
+      - unixodbc
+      - libxslt
+      - fop
+  - name: elixir
+    version: 1.15.4-otp-26
+    dependencies: unzip
+  - name: nodejs
+    version: 18.17.0
+
+docker:
+  dir: /opt/docker/data
+  network: tn-env-network

@@ -1,0 +1,7 @@
+- name: Set Kernel Parameters
+  become: true
+  sysctl:
+    name: fs.inotify.max_user_watches
+    value: 524288
+    sysctl_file: /etc/sysctl.d/99-vscode.conf
+    reload: yes

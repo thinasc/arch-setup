@@ -1,0 +1,11 @@
+- name: Clone YaY
+  git:
+    repo: https://aur.archlinux.org/yay-bin.git
+    dest: /tmp/yay-bin
+    update: true
+
+- name: Build and Install YaY
+  command:
+    chdir: /tmp/yay-bin
+    cmd: makepkg -si --noconfirm
+    creates: "{{ yay }}"

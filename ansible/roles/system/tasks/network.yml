@@ -1,0 +1,19 @@
+- name: Setup dhcpcd.conf
+  become: true
+  copy:
+    src: dhcpcd.conf
+    dest: /etc/dhcpcd.conf
+    mode: "0644"
+
+- name: Config dhcpcd systemctl
+  become: true
+  systemd:
+    name: dhcpcd
+    state: restarted
+
+- name: Setup resolv.conf
+  become: true
+  copy:
+    src: resolv.conf
+    dest: /etc/resolv.conf
+    mode: "0644"

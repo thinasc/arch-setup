@@ -1,0 +1,19 @@
+- name: Activate Parallel Downloads
+  become: true
+  lineinfile:
+    dest: /etc/pacman.conf
+    regexp: "^#ParallelDownloads = 5"
+    line: "ParallelDownloads = 5"
+
+- name: Activate Colors on Pacman
+  become: true
+  lineinfile:
+    dest: /etc/pacman.conf
+    regexp: "^#Color"
+    line: "Color"
+
+- name: Pacman Mirrorlist
+  become: true
+  copy:
+    src: mirrorlist
+    dest: /etc/pacman.d/

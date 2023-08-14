@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  connection: local
+  become: false
+
+  roles:
+    - role: system
+    # - role: programming

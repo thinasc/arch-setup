@@ -1,0 +1,6 @@
+---
+- include_tasks: network.yml
+- include_tasks: configs.yml
+- include_tasks: pacman.yml
+- include_tasks: essential.yml
+- include_tasks: yay.yml
