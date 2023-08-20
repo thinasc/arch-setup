@@ -1,0 +1,38 @@
+- name: Install Python Tools
+  become: true
+  pacman:
+    name: poetry
+    state: present
+
+- name: Create Fish Completions Folder
+  file:
+    path: $HOME/.config/fish/completions
+    state: directory
+
+- name: Install Poetry Fish Completions
+  shell:
+    cmd: poetry completions fish > $HOME/.config/fish/completions/poetry.fish
+    executable: "{{ user.shell }}"
+
+- name: Upgrade Pip, Setuptools and Wheel
+  shell:
+    cmd: pip install --no-cache --upgrade pip setuptools wheel
+    executable: "{{ user.shell }}"
+
+- name: Install Python Packages
+  shell:
+    cmd: pip install {{ item }}
+    executable: "{{ user.shell }}"
+  loop:
+    - virtualenv
+    - ipython
+    - ipdb
+    - rich
+
+- name: Install NodeJS Packages
+  shell:
+    cmd: npm install -g {{ item }}@latest
+    executable: "{{ user.shell }}"
+  loop:
+    - npm
+    - yarn

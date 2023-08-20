@@ -8,4 +8,4 @@
     - role: tools
     - role: neovim
     - role: config
-    # - role: programming
+    - role: programming

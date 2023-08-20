@@ -27,3 +27,6 @@ source (dirname (status --current-filename))/alias.fish
 
 # Bind
 source (dirname (status --current-filename))/binds.fish
+
+# ASDF
+source /opt/asdf-vm/asdf.fish
