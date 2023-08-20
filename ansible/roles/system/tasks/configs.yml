@@ -5,3 +5,8 @@
     value: 524288
     sysctl_file: /etc/sysctl.d/99-vscode.conf
     reload: yes
+
+- name: Set Timezone
+  become: true
+  timezone:
+    name: Europe/Dublin
