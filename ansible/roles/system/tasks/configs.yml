@@ -6,7 +6,8 @@
     sysctl_file: /etc/sysctl.d/99-vscode.conf
     reload: yes
 
-- name: Set Timezone
+- name: Set Timezone to Europe/Dublin
   become: true
   timezone:
     name: Europe/Dublin
+    hwclock: local
