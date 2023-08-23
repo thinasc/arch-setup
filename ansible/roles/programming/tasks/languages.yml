@@ -15,9 +15,13 @@
 
 - name: Install Languages
   shell:
-    cmd: |
-      asdf install {{ item.name }} {{ item.version }}
-      asdf global {{ item.name }} {{ item.version }}
+    cmd: asdf install {{ item.name }} {{ item.version }}
     executable: "{{ user.shell }}"
     creates: $HOME/.asdf/installs/{{ item.name }}/{{ item.version }}
+  loop: "{{ languages }}"
+
+- name: Set Global Languages Version
+  shell:
+    cmd: asdf global {{ item.name }} {{ item.version }}
+    executable: "{{ user.shell }}"
   loop: "{{ languages }}"
