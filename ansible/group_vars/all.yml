@@ -19,7 +19,7 @@ languages:
       - xz
       - tk
   - name: erlang
-    version: 26.0.2
+    version: 25.3.2.5
     dependencies:
       - ncurses
       - glu
@@ -30,7 +30,7 @@ languages:
       - libxslt
       - fop
   - name: elixir
-    version: 1.15.4-otp-26
+    version: 1.15.4-otp-25
     dependencies: unzip
   - name: nodejs
     version: 20.5.1
