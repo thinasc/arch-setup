@@ -6,13 +6,13 @@
       - tmux
       - tmuxp
       - stow
-      - bottom
       - htop
       - zoxide
-      - neofetch
+      - fastfetch
       - tree
-      - exa
+      - eza
       - bat
       - ncdu
+      - dust
       - jq
     state: present

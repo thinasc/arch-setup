@@ -6,8 +6,8 @@
     - $HOME/.config/fish
     - $HOME/.config/htop
     - $HOME/.config/hypr
-    - $HOME/.config/kitty
     - $HOME/.config/tmux
+    - $HOME/.config/wezterm
 
 - name: Clone Dotfiles
   copy:

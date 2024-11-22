@@ -3,13 +3,12 @@
   pacman:
     name:
       - fish
-      - zsh
       - starship
-      - kitty
+      - wezterm
     state: present
 
 - name: Change {{ user.name }}'s Shell to Fish
-  become: true 
+  become: true
   user:
     name: "{{ user.name }}"
     shell: "{{ user.shell }}"

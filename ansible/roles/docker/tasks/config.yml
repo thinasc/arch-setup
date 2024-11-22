@@ -1,0 +1,12 @@
+- name: Enable Docker Service
+  become: true
+  systemd:
+    name: docker.service
+    enabled: true
+
+- name: Add "{{ user.name }}" to docker group
+  become: true
+  user:
+    name: "{{ user.name }}"
+    groups: docker
+    append: yes
